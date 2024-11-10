@@ -3,90 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seguimiento de Riego de Plantas</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>App de Riego de Plantas</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .plant-image {
+            height: 200px;
+            width: 200px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-r from-green-200 to-blue-200 text-gray-800 flex items-center justify-center min-h-screen">
-    <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-lg border border-gray-300">
-        <h1 class="text-3xl font-bold text-center mb-8 text-green-600">Registro de Riego de Plantas</h1>
-        
-        <div class="space-y-6">
-            <!-- Potos -->
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <img src="https://cdn.pixabay.com/photo/2019/11/04/00/11/pothos-4592861_1280.jpg" alt="Potos" class="rounded-full w-12 h-12 mr-4">
-                    <div>
-                        <h2 class="text-lg font-semibold">Potos</h2>
-                        <p class="text-sm text-gray-500">Riego cada 7 días</p>
-                        <p class="text-xs text-gray-400 mt-1">Último riego: <span id="potos-fecha" class="font-semibold">No registrado</span></p>
-                    </div>
-                </div>
-                <button onclick="registraRiego('potos')" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md font-semibold">
-                    Regar
-                </button>
-            </div>
+<body class="bg-green-100 font-sans leading-normal tracking-normal">
+    <div class="container mx-auto px-4 py-6">
+        <h1 class="text-3xl font-bold text-center text-green-700 mb-6">App de Riego de Plantas</h1>
 
-            <!-- Sansevieria -->
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <img src="https://cdn.pixabay.com/photo/2020/08/13/13/06/snake-plant-5485679_1280.jpg" alt="Sansevieria" class="rounded-full w-12 h-12 mr-4">
-                    <div>
-                        <h2 class="text-lg font-semibold">Sansevieria</h2>
-                        <p class="text-sm text-gray-500">Riego cada 14 días</p>
-                        <p class="text-xs text-gray-400 mt-1">Último riego: <span id="sansevieria-fecha" class="font-semibold">No registrado</span></p>
-                    </div>
-                </div>
-                <button onclick="registraRiego('sansevieria')" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md font-semibold">
-                    Regar
-                </button>
+        <!-- Información de las plantas -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <!-- Poto -->
+            <div class="bg-white p-4 rounded-lg shadow-md text-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Pothos_NJoy.jpg/640px-Pothos_NJoy.jpg" alt="Poto" class="plant-image mx-auto">
+                <h2 class="text-xl font-semibold text-green-700 mt-4">Poto</h2>
+                <p class="text-gray-600">Frecuencia de riego: Cada 1-2 semanas</p>
+                <button onclick="waterPlant('poto')" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4">Regar</button>
+                <p id="poto-last-watered" class="text-gray-600 mt-2"></p>
             </div>
-
+            <!-- Sanseviera -->
+            <div class="bg-white p-4 rounded-lg shadow-md text-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Sansevieria_trifasciata_cv._Laurentii.jpg" alt="Sanseviera" class="plant-image mx-auto">
+                <h2 class="text-xl font-semibold text-green-700 mt-4">Sanseviera</h2>
+                <p class="text-gray-600">Frecuencia de riego: Cada 2-6 semanas</p>
+                <button onclick="waterPlant('sanseviera')" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4">Regar</button>
+                <p id="sanseviera-last-watered" class="text-gray-600 mt-2"></p>
+            </div>
             <!-- Costilla de Adán -->
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <img src="https://cdn.pixabay.com/photo/2018/02/13/00/27/monstera-3149358_1280.jpg" alt="Costilla de Adán" class="rounded-full w-12 h-12 mr-4">
-                    <div>
-                        <h2 class="text-lg font-semibold">Costilla de Adán</h2>
-                        <p class="text-sm text-gray-500">Riego cada 10 días</p>
-                        <p class="text-xs text-gray-400 mt-1">Último riego: <span id="costilla-fecha" class="font-semibold">No registrado</span></p>
-                    </div>
-                </div>
-                <button onclick="registraRiego('costilla')" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md font-semibold">
-                    Regar
-                </button>
+            <div class="bg-white p-4 rounded-lg shadow-md text-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Monstera_deliciosa.JPG/1200px-Monstera_deliciosa.JPG" alt="Costilla de Adán" class="plant-image mx-auto">
+                <h2 class="text-xl font-semibold text-green-700 mt-4">Costilla de Adán</h2>
+                <p class="text-gray-600">Frecuencia de riego: Cada semana</p>
+                <button onclick="waterPlant('costilla')" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4">Regar</button>
+                <p id="costilla-last-watered" class="text-gray-600 mt-2"></p>
             </div>
         </div>
     </div>
 
     <script>
-        // Intervalos recomendados para riego en días
-        const intervalosRiego = {
-            potos: 7, // cada semana
-            sansevieria: 14, // cada dos semanas
-            costilla: 10 // cada 10 días
-        };
-
-        // Función para actualizar la fecha de riego en la interfaz
-        function actualizaFechaRiego(planta) {
-            const fecha = localStorage.getItem(`riego-${planta}`);
-            const fechaElemento = document.getElementById(`${planta}-fecha`);
-            fechaElemento.innerText = fecha ? new Date(fecha).toLocaleDateString() : "No registrado";
+        // Cargar la última fecha de riego de cada planta
+        function loadWateringDates() {
+            const plants = ['poto', 'sanseviera', 'costilla'];
+            plants.forEach(plant => {
+                const lastWatered = localStorage.getItem(plant + '-lastWatered');
+                if (lastWatered) {
+                    document.getElementById(plant + '-last-watered').innerText = 'Último riego: ' + lastWatered;
+                }
+            });
         }
 
-        // Registrar la fecha de riego en localStorage
-        function registraRiego(planta) {
-            const fechaActual = new Date();
-            localStorage.setItem(`riego-${planta}`, fechaActual);
-            actualizaFechaRiego(planta);
-            alert(`Has regado la planta ${planta.charAt(0).toUpperCase() + planta.slice(1)}.`);
+        // Actualizar la fecha de riego de una planta y guardarla en localStorage
+        function waterPlant(plant) {
+            const currentDate = new Date().toLocaleDateString();
+            localStorage.setItem(plant + '-lastWatered', currentDate);
+            document.getElementById(plant + '-last-watered').innerText = 'Último riego: ' + currentDate;
         }
 
-        // Inicialización: cargar fechas de riego desde localStorage
-        document.addEventListener("DOMContentLoaded", () => {
-            actualizaFechaRiego('potos');
-            actualizaFechaRiego('sansevieria');
-            actualizaFechaRiego('costilla');
-        });
+        // Cargar fechas de riego al iniciar la app
+        document.addEventListener('DOMContentLoaded', loadWateringDates);
     </script>
 </body>
 </html>
