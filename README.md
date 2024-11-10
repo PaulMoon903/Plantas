@@ -38,7 +38,7 @@
             </div>
             <!-- Costilla de Adán -->
             <div class="bg-white p-4 rounded-lg shadow-md text-center">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Monstera_deliciosa.JPG/1200px-Monstera_deliciosa.JPG" alt="Costilla de Adán" class="plant-image mx-auto">
+                <img src="[https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Monstera_deliciosa.JPG/1200px-Monstera_deliciosa.JPG" alt="Costilla de Adán" class="plant-image mx-auto](https://media.vogue.es/photos/601412d18b46611ae2f9a563/2:3/w_2560%2Cc_limit/monstera2.jpg)">
                 <h2 class="text-xl font-semibold text-green-700 mt-4">Costilla de Adán</h2>
                 <p class="text-gray-600">Frecuencia de riego: Cada semana</p>
                 <button onclick="waterPlant('costilla')" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4">Regar</button>
